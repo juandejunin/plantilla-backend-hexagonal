@@ -1,28 +1,37 @@
-# Template Backend – Arquitectura Hexagonal por Módulos
+# Template Backend – Ports & Adapters con Vertical Slicing
 
 ## 📌 Descripción
-Este repositorio provee un **template base para desarrollar backends modulares** utilizando **arquitectura hexagonal** aplicada **de forma independiente en cada módulo de dominio**.
+
+Este repositorio provee un template base para desarrollar backends modulares utilizando arquitectura hexagonal (Ports & Adapters) aplicada de forma independiente en cada módulo, siguiendo el enfoque de Vertical Slicing.
+
+Cada módulo funciona como una rebanada vertical, conteniendo todo lo necesario para implementar una funcionalidad completa: dominio, aplicación y adaptadores.
 
 El objetivo del template es:
-- escalar sin perder control
-- proteger la lógica de negocio
-- facilitar el mantenimiento y la evolución del sistema
-- servir como guía estructural para equipos
+
+Escalar el proyecto sin perder control ni modularidad.
+
+Proteger la lógica de negocio manteniéndola independiente de frameworks o infraestructura.
+
+Facilitar el mantenimiento y la evolución del sistema.
+
+Servir como guía estructural para equipos, usando nomenclatura y convenciones reconocidas internacionalmente (Ports & Adapters, Vertical Slicing).ervir como guía estructural para equipos
 
 ---
 
 ## 🧠 Principios de diseño
 
-> **La estructura se organiza por módulos de dominio.  
-> Cada módulo implementa arquitectura hexagonal de forma independiente.**
+El sistema se organiza en módulos de dominio independientes.
+Cada módulo implementa su propia arquitectura hexagonal (Ports & Adapters), siguiendo el enfoque de Vertical Slicing.
 
 A partir de este principio:
 
-- los **módulos organizan el dominio**
-- la **arquitectura hexagonal organiza las dependencias**
-- el dominio queda aislado de detalles técnicos
-- no existe una “hexagonal global” para todo el sistema
+Cada módulo encapsula su propio dominio, casos de uso y adaptadores, formando una slice vertical independiente.
 
+La arquitectura hexagonal asegura que las dependencias fluyan de afuera hacia adentro, protegiendo el dominio de detalles técnicos y frameworks.
+
+No existe una “hexagonal global” para todo el sistema; cada módulo mantiene autonomía y cohesión.
+
+Facilita modularidad, escalabilidad y pruebas aisladas para cada funcionalidad.
 ---
 
 ## 🧩 Estructura del proyecto
@@ -39,17 +48,29 @@ src
          └─ configuracion
 ```
 
-### 📁 `modulos`
-Contiene todos los **módulos de dominio** del sistema.  
-Cada módulo representa un subdominio o bounded context.
+### 📁 modulos
 
-### 📁 `modulo-ejemplo`
-Es un **módulo de referencia** incluido únicamente con fines didácticos.
+Contiene todos los módulos de dominio del sistema.
+Cada módulo representa un subdominio o bounded context y funciona como una slice vertical (Vertical Slice):
+
+Cada módulo incluye dominio, aplicación y adaptadores, de manera autocontenida.
+
+Permite aislar la lógica de negocio de detalles técnicos y frameworks.
+
+Facilita modularidad, pruebas independientes y escalabilidad, ya que no existe una arquitectura global que acople todos los módulos.
+
+💡 Esto significa que cada módulo puede evolucionar, probarse y desplegarse de manera independiente, siguiendo los principios de Ports & Adapters.
+
+### 📁 modulo-ejemplo
+
+Es un módulo de referencia, incluido únicamente con fines didácticos.
+Sirve como ejemplo de slice vertical, implementando dominio, aplicación y adaptadores siguiendo los principios de Ports & Adapters.
 
 👉 Para crear un nuevo módulo:
-1. Copie la carpeta `modulo-ejemplo`
-2. Renómbrela según el dominio (por ejemplo: `usuarios`, `pedidos`)
-3. Adapte el contenido al nuevo contexto
+
+1. Copie la carpeta `modulo-ejemplo`.
+2. Renómbrela según el subdominio o bounded context (por ejemplo: `usuarios`, `pedidos`).
+3. Adapte el contenido al nuevo contexto, manteniendo la separación de `dominio`, `aplicacion` y `adaptadores`.
 
 ---
 
@@ -104,13 +125,13 @@ Cada módulo implementa arquitectura hexagonal internamente:
 ---
 
 ## 🎯 Objetivo del template
-Este template **no modela un negocio específico**.  
-Modela una **forma de estructurar y pensar sistemas backend**:
+El objetivo del template es:
 
-- modular
-- explícita
-- orientada al dominio
-- preparada para crecer
+- Escalar el proyecto sin perder control ni modularidad.
+- Proteger la lógica de negocio manteniéndola independiente de frameworks o infraestructura.
+- Facilitar el mantenimiento y la evolución del sistema.
+- Servir como guía estructural para equipos, usando nomenclatura y convenciones reconocidas internacionalmente (Ports & Adapters, Vertical Slicing).
+
 
 ---
 
